@@ -1,5 +1,5 @@
 package ar.edu.unlam.alicia.enums;
 
-public enum Tipo {
+public enum TipoAlimento {
 AGRANDADOR,ACHICADOR
 }

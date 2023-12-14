@@ -1,20 +1,26 @@
 package ar.edu.unlam.alicia.persona;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import ar.edu.unlam.alicia.alimento.Alimento;
+import ar.edu.unlam.alicia.enums.TipoAlimento;
+import ar.edu.unlam.alicia.exceptions.DineroInsuficienteEception;
+import ar.edu.unlam.alicia.exceptions.EfectoAnuladoException;
+import ar.edu.unlam.alicia.exceptions.SinDineroDisponibleEception;
 import ar.edu.unlam.alicia.interfaces.Acciones;
-import ar.edu.unlam.alicia.interfaces.Alimento;
-import ar.edu.unlam.alicia.interfaces.alimento;
 
-public class Persona implements Acciones{
+
+public abstract class Persona  implements Acciones{
 
 	protected Integer dni;
 	protected String nombre;
 	protected Double peso;
 	protected Double altura;
-	protected Integer dinero;
+	protected Double dinero;
 
-	public Persona(Integer dni, String nombre, Double peso, Double altura,Integer dinero) {
+	public Persona(Integer dni, String nombre, Double peso, Double altura,Double dinero) {
 		this.dni=dni;
 		this.nombre=nombre;
 		this.peso=peso;
@@ -56,6 +62,18 @@ public class Persona implements Acciones{
 		this.altura = altura;
 	}
 
+	public Double getDinero() {
+		return dinero;
+	}
+
+
+
+	public void setDinero(Double dinero) {
+		this.dinero = dinero;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(dni);
@@ -80,17 +98,23 @@ public class Persona implements Acciones{
 
 
 	@Override
-	public void comprar(String precio, Alimento alimento) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void comprar(Alimento alimento) throws SinDineroDisponibleEception, DineroInsuficienteEception ;
 
 
 
 	@Override
-	public void alimentarse(Alimento alimento) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract Boolean alimentarse(Alimento alimento) throws EfectoAnuladoException ;
 
+
+
+	public abstract void agregarAlimentoaAlista(Alimento caramelos);
+
+
+
+	
+	public abstract void ordenarLista(List<Alimento> listaDeAlimentos);
+
+
+
+	
 }
